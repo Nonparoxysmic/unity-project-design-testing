@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangerTESTING : MonoBehaviour
 {
+    public string startupName;
+    public string persistentName;
     public string titleScreenName;
-    public string mainMenuName;
     public float defaultTimeLeft;
 
     private float timeLeft;
@@ -15,28 +16,28 @@ public class SceneChangerTESTING : MonoBehaviour
     void Start()
     {
         timeLeft = defaultTimeLeft;
-        nextScene = titleScreenName;
+        nextScene = persistentName;
     }
 
     void Update()
     {
-        if (nextScene == titleScreenName)
+        if (nextScene == persistentName)
         {
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0)
             {
                 SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
                 timeLeft = defaultTimeLeft;
-                nextScene = mainMenuName;
+                nextScene = titleScreenName;
             }
         }
-        else if (nextScene == mainMenuName)
+        else if (nextScene == titleScreenName)
         {
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0)
             {
+                SceneManager.UnloadSceneAsync(startupName);
                 SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
-                SceneManager.UnloadSceneAsync(titleScreenName);
                 nextScene = "None";
             }
         }
