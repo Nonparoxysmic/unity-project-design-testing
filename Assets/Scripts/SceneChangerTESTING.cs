@@ -37,7 +37,7 @@ public class SceneChangerTESTING : MonoBehaviour
             if (timeLeft < 0)
             {
                 SceneManager.UnloadSceneAsync(startupName);
-                SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
+                SceneManager.LoadScene(nextScene, LoadSceneMode.Additive);
                 nextScene = "None";
             }
         }
