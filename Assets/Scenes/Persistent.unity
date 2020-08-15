@@ -153,11 +153,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 446c8d0b11f63a84db08e39ddc4ac36e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -491,6 +491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2134315651}
   - component: {fileID: 2134315652}
+  - component: {fileID: 2134315653}
   m_Layer: 0
   m_Name: SceneChanger
   m_TagString: Untagged
@@ -524,3 +525,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84fcdcf79e5c8b0419272b64a9ccde1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2134315653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134315650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2010d154f0aba0a42991ebd6a6aef326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startupScene: {fileID: 102900000, guid: 4692590cd0899ea4daa8c6c182a179ca, type: 3}
+  titleScreenScene: {fileID: 102900000, guid: 3637ea94802258f4099954a29ebba3e3, type: 3}
+  mainMenuScene: {fileID: 102900000, guid: a648c8c84bdcfb94788b07350872611f, type: 3}
+  timeBetweenScenes: 4

@@ -1,44 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneChangerTESTING : MonoBehaviour
 {
-    public string startupName;
-    public string persistentName;
-    public string titleScreenName;
-    public float defaultTimeLeft;
+    public SceneAsset startupScene;
+    public SceneAsset titleScreenScene;
+    public SceneAsset mainMenuScene;
+
+    public float timeBetweenScenes;
 
     private float timeLeft;
-    private string nextScene;
+    private SceneAsset nextScene;
 
     void Start()
     {
-        timeLeft = defaultTimeLeft;
-        nextScene = persistentName;
+        timeLeft = timeBetweenScenes;
+        nextScene = titleScreenScene;
     }
 
     void Update()
     {
-        if (nextScene == persistentName)
+        if (nextScene == titleScreenScene)
         {
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0)
             {
-                SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
-                timeLeft = defaultTimeLeft;
-                nextScene = titleScreenName;
+                SceneManager.LoadScene(nextScene.name, LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync(startupScene.name);
+                timeLeft = timeBetweenScenes;
+                nextScene = mainMenuScene;
             }
         }
-        else if (nextScene == titleScreenName)
+        else if (nextScene == mainMenuScene)
         {
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0)
             {
-                SceneManager.UnloadSceneAsync(startupName);
-                SceneManager.LoadScene(nextScene, LoadSceneMode.Additive);
-                nextScene = "None";
+                SceneManager.LoadScene(nextScene.name, LoadSceneMode.Additive);
+                SceneManager.UnloadSceneAsync(titleScreenScene.name);
+                nextScene = null;
             }
         }
     }
