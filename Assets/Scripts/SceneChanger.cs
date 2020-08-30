@@ -1,29 +1,37 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
+    [HideInInspector]
     public string CurrentScene { get; private set; }
-    public SceneAsset startupScene;
 
     private void Start()
     {
-        CurrentScene = startupScene.name;
+        CurrentScene = null;
+        if (SceneManager.sceneCount > 2)
+        {
+            Debug.LogError(gameObject.name + ": Too many scenes loaded.");
+        }
+        else
+        {
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                if (SceneManager.GetSceneAt(i).name != gameObject.scene.name)
+                {
+                    CurrentScene = SceneManager.GetSceneAt(i).name;
+                }
+            }
+        }
     }
 
     public void ChangeScene(string newScene)
     {
         SceneManager.LoadScene(newScene, LoadSceneMode.Additive);
-        try
+        if (CurrentScene != null)
         {
             SceneManager.UnloadSceneAsync(CurrentScene);
         }
-        catch
-        {
-            Debug.Log("Scene to unload is invalid: " + CurrentScene);
-        }
-        
         CurrentScene = newScene;
     }
 }
