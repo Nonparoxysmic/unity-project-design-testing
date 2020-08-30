@@ -3,8 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    [HideInInspector]
-    public string CurrentScene { get; private set; }
+    [HideInInspector] public string CurrentScene { get; private set; }
 
     private void Start()
     {

@@ -4,8 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadPersistentScene : MonoBehaviour
 {
-    [SerializeField]
-    private SceneAsset persistentScene;
+    [SerializeField] SceneAsset persistentScene;
     
     void Start()
     {
